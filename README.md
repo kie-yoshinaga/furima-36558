@@ -46,12 +46,12 @@ Things you may want to cover:
 | ------------------ | ---------- | ----------- |
 | title              | string     | null: false |
 | catch_copy         | text       | null: false |
-| category           | string     | null: false | 
-| condition          | string     | null: false |
-| postage            | string     | null: false |
-| region             | string     | null: false |
-| shipping_date      | string     | null: false |
-| price              | string     | null: false |
+| category_id        | integer    | null: false | 
+| condition_id       | integer    | null: false |
+| postage_id         | integer    | null: false |
+| region_id          | integer    | null: false |
+| shipping_date_id   | integer    | null: false |
+| price              | integer    | null: false |
 
 ### Association
 
@@ -61,16 +61,13 @@ Things you may want to cover:
 
 ## order_history テーブル
 
-| Column             | Type       | Options                        |
+| Column             | Type       ｜Options                        |
 | ------------------ | ---------- | ---------------------          |
-| price              | references | null: false  foreign_key: true |
 | user               | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
-| address            | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to : items
-- has_one : address
 
 ## address テーブル
 
