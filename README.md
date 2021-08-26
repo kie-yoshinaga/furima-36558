@@ -61,9 +61,10 @@ Things you may want to cover:
 - has_one : order_history
 
 
+
 ## order_history テーブル
 
-| Column             | Type       ｜Options                        |
+| Column             | Type       |Options                         |
 | ------------------ | ---------- | ---------------------          |
 | user               | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
