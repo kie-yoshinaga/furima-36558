@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
 
   context '商品登録に失敗する場合' do
     it '商品画像を1枚つけなければ登録できない' do
-      @item.image = ''
+      @item.image = 'nil'
       @item.valid?
       expect(@item.errors.full_messages).to include{"Image can't be blank"}
     end
@@ -62,10 +62,35 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price Half-width number", "Price Out of setting range")
     end
+    it '半角英数混合では登録できないこと' do
+      @item.price = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Half-width number", "Price Out of setting range")
+    end
+    it '半角英語だけでは登録できないこと' do
+      @item.price = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Half-width number", "Price Out of setting range")
+    end
+    it 'priceは全角数字では登録できない' do
+      @item.price = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Half-width number", "Price Out of setting range")
+    end
     it '売価格は、¥300~¥9,999,999の間のみ保存可能であること' do
       @item.price = '100'
       @item.valid?
       expect(@item.errors.full_messages).to include("Price Out of setting range")
+    end
+    it '売価格は、¥9,999,999を超えると出品できないこと' do
+      @item.price = '10,000,000'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Out of setting range")
+    end
+    it 'userが紐付いていなければ出品できないこと' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
     end
   end
 end

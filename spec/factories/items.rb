@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    image {Faker::Lorem.sentence}
+    #image {Faker::Lorem.sentence}
     title {"フリマ太郎のフィギュア"}
     catch_copy {"フリマ太郎の等身大フィギュア"}
     category_id {"2"}

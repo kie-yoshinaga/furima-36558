@@ -1,16 +1,16 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @item = Item.all
   end
 
   def new
-    @items = Item.new
+    @item = Item.new
   end
 
   def create
-    @items = Item.create(item_params)
-    if @items.save
+    @item = Item.create(item_params)
+    if @item.save
       redirect_to root_path
     else
       render :new

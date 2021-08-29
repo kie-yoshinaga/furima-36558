@@ -4,10 +4,10 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with(model: @items, local: true ) do |f| %>
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    <%= form_with(model: @item, local: true ) do |f| %>
+
     <%= render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -20,7 +20,7 @@
           クリックしてファイルをアップロード
         </p>
         <%= f.file_field :image, id:"item-image" %>
-          <%#= image_tag @items.image, class: 'item-image' if @items.image.attached? %>
+          <%#= image_tag @item.image, class: 'item-image' if @item.image.attached? %>
         </div>
       </div>
       <%# /商品画像 %>
