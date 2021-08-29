@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :move_to_index, except: [:create]
 
-  def index
-    @item = Item.all
-  end
+  #def index
+    #@item = Item.all
+  #end
 
   def new
     @item = Item.new
@@ -22,4 +23,23 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image,:title,:catch_copy,:category_id,:condition_id,:price,:postage_id,:prefecture_id,:shipping_date_id).merge(user_id: current_user.id)
   end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
 end
+
+
+<%# if user_signed_in? %>
+  <%#= link_to(new_item_path, class: 'purchase-btn') do %>
+    <%#<span class='purchase-btn-text'>出品する</span>
+    <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+  <%# end %>
+<%# else %>
+  <%#= link_to(user_session_path, class: 'purchase-btn') do %>
+    <%#<span class='purchase-btn-text'>出品する</span>
+    <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+  <%# end %>
+<%# end %>
