@@ -7,8 +7,12 @@ class Item < ApplicationRecord
   validates :postage_id, presence: true
   validates :prefecture_id, presence: true
   validates :shipping_date_id, presence: true
-  validates :price, presence: true
-  
+  #validates :price, presence: true
+
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
+  validates :price,
+            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
+
 
   belongs_to :user
   has_one :order_history
