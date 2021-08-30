@@ -3,12 +3,12 @@ FactoryBot.define do
     #image {Faker::Lorem.sentence}
     title {"フリマ太郎のフィギュア"}
     catch_copy {"フリマ太郎の等身大フィギュア"}
-    category_id {"2"}
-    condition_id {"2"}
-    postage_id {"2"}
-    shipping_date_id {"2"}
-    prefecture_id {"2"}
-    price {"1000"}
+    category_id {2}
+    condition_id {2}
+    postage_id {2}
+    shipping_date_id {2}
+    prefecture_id {2}
+    price {1000}
     association :user
 
     #after(:build) do |item|

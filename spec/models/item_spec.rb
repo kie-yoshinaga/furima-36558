@@ -52,6 +52,14 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping date can't be blank")
     end
+    it 'category_id、condition_id、postage_id、shipping_date_idが１を選択されていた場合は登録できない' do
+      @item.category_id = '1'
+      @item.condition_id = '1'
+      @item.postage_id = '1'
+      @item.shipping_date_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Postage can't be blank")
+    end
     it 'priceが空では登録できない' do
       @item.price = ''
       @item.valid?
