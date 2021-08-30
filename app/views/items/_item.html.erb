@@ -1,0 +1,10 @@
+<div class="list">
+  <%= link_to image_tag(item.image, class: :card__img ), items_path(item.id), method: :get%>
+  <div class="card__body">
+    <%= link_to "#{item.title}", item_path(item.id), method: :get, class: :card__title%>
+    <p class="card__summary">
+      <% "item.price" %>
+      <%= item.price %>
+    </p>
+  </div>
+</div>
