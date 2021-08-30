@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
 
+  validates :image, presence: true
   validates :title, presence: true
   validates :catch_copy, presence: true
   validates :category_id, numericality: { other_than: 1, message: "can't be blank"} 
@@ -13,6 +15,7 @@ class Item < ApplicationRecord
 
 
   belongs_to :user
+  belongs_to_active_hash :postage
   #has_one :order_history
   has_one_attached :image
 
