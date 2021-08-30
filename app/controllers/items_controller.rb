@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   #before_action :move_to_index, only: [:create]
 
   def index
-    @item = Item.all
+    
     @item = Item.includes(:user).order("created_at DESC")
   end
 
