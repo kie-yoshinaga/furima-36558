@@ -1,4 +1,6 @@
 class Category < ActiveHash::Base
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: 'レディース' },
