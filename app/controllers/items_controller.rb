@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new, :edit, :update]
+  before_action :authenticate_user!, only: [:create, :new, :edit, :update, :destroy]
   before_action :set_message, only: [:show, :edit, :update, :destroy ]
   before_action :redirect_root, only: [:edit, :update, :destroy ]
   
