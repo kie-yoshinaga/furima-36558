@@ -7,7 +7,7 @@ class OrderHistoriesController < ApplicationController
     if current_user == @item.user
         redirect_to root_path
     end
-    redirect_to root_path unless current_user.id == @item.user_id
+    #redirect_to root_path unless current_user.id == @item.user_id
   end
 
   def new
@@ -44,7 +44,7 @@ class OrderHistoriesController < ApplicationController
 
   def move_to_index
     unless user_signed_in?
-      redirect_to root_path
+      redirect_to user_session_path
     end
   end
 
