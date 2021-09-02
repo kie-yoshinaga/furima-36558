@@ -1,7 +1,13 @@
 class OrderHistoriesController < ApplicationController
+  before_action :move_to_index, expect: [:index,:new, :create]
+
   def index
     @order_history_address = OrderHistoryAddress.new
     @item = Item.find(params[:item_id])
+    if current_user == @item.user
+        redirect_to root_path
+    end
+    redirect_to root_path unless current_user.id == @item.user_id
   end
 
   def new
@@ -34,6 +40,12 @@ class OrderHistoriesController < ApplicationController
       card: order_history_address_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 
 end
