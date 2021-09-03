@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :shipping_date
   
-  #has_one :order_history
+  has_one :order_history
   has_one_attached :image
 
 end
