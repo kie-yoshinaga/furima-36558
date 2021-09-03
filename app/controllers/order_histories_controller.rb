@@ -1,9 +1,11 @@
 class OrderHistoriesController < ApplicationController
-  before_action :move_to_index, expect: [:index,:new, :create]
+  before_action :authenticate_user!
+  #before_action :move_to_index, expect: [:index,:new, :create]
+  before_action :set_message, only: [:creste, :index ]
 
   def index
     @order_history_address = OrderHistoryAddress.new
-    @item = Item.find(params[:item_id])
+    
     if current_user == @item.user && @item.order_history.present?
         redirect_to root_path
     end
@@ -16,7 +18,7 @@ class OrderHistoriesController < ApplicationController
 
   def create
 
-    @item = Item.find(params[:item_id])
+    
     @order_history_address = OrderHistoryAddress.new(order_history_address_params)
     if @order_history_address.valid?
       pay_item
@@ -42,10 +44,7 @@ class OrderHistoriesController < ApplicationController
     )
   end
 
-  def move_to_index
-    unless user_signed_in?
-      redirect_to user_session_path
-    end
+  def set_message
+    @item = Item.find(params[:item_id])
   end
-
 end

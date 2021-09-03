@@ -39,7 +39,7 @@ RSpec.describe OrderHistoryAddress, type: :model do
       expect(@order_history_address.errors.full_messages).to include{"prefecture_id can't be blank"}
     end
     it 'prefecture_idが１を選択されていた場合は登録できない' do
-      @order_history_address.prefecture_id = '1'
+      @order_history_address.prefecture_id = 1
       @order_history_address.valid?
       expect(@order_history_address.errors.full_messages).to include("Prefecture can't be blank")
     end
