@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe OrderHistoryAddress, type: :model do
   before do
-    @order_history_address = FactoryBot.build(:order_history_address)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order_history_address = FactoryBot.build(:order_history_address, item_id: item.id, user_id: user.id)
+    #@order_history_address.image = fixture_file_upload('app/assets/images/star.png')
+    sleep 0.3
   end
 
   context '商品購入に成功する場合' do
@@ -10,6 +14,10 @@ RSpec.describe OrderHistoryAddress, type: :model do
       expect(@order_history_address).to be_valid
     end
     it "tokenがあれば保存ができること" do
+      expect(@order_history_address).to be_valid
+    end
+    it 'building_nameは空でも登録できること' do
+      @order_history_address.building_name = ''
       expect(@order_history_address).to be_valid
     end
   end
@@ -29,6 +37,11 @@ RSpec.describe OrderHistoryAddress, type: :model do
       @order_history_address.prefecture_id = ''
       @order_history_address.valid?
       expect(@order_history_address.errors.full_messages).to include{"prefecture_id can't be blank"}
+    end
+    it 'prefecture_idが１を選択されていた場合は登録できない' do
+      @order_history_address.prefecture_id = '1'
+      @order_history_address.valid?
+      expect(@order_history_address.errors.full_messages).to include("Prefecture can't be blank")
     end
     it 'cityを入力しなければ登録できない' do
       @order_history_address.city = ''
@@ -50,10 +63,25 @@ RSpec.describe OrderHistoryAddress, type: :model do
       @order_history_address.valid?
       expect(@order_history_address.errors.full_messages).to include{"phone_number can't be blank"}
     end
+    it 'phone_numberは9桁以下の半角数値では登録できない' do
+      @order_history_address.phone_number = '11111'
+      @order_history_address.valid?
+      expect(@order_history_address.errors.full_messages).to include{"phone_number can't be blank"}
+    end
     it "tokenが空では登録できないこと" do
       @order_history_address.token = ''
       @order_history_address.valid?
       expect(@order_history_address.errors.full_messages).to include("Token can't be blank")
+    end
+    it "ユーザーが紐付いていなければ登録できないこと" do
+      @order_history_address.user_id = nil
+      @order_history_address.valid?
+      expect(@order_history_address.errors.full_messages).to include("User can't be blank")
+    end
+    it "商品が紐付いていなければ登録できないこと" do
+      @order_history_address.item_id = nil
+      @order_history_address.valid?
+      expect(@order_history_address.errors.full_messages).to include("Item can't be blank")
     end
   end
 end

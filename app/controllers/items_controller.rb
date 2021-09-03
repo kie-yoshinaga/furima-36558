@@ -26,6 +26,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @order_history_address = OrderHistoryAddress.new
+    if @item.order_history.present?
+      redirect_to root_path
+    end
   end
 
   def update
