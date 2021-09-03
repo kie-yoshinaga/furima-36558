@@ -5,7 +5,7 @@ RSpec.describe OrderHistoryAddress, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order_history_address = FactoryBot.build(:order_history_address, item_id: item.id, user_id: user.id)
-    #@order_history_address.image = fixture_file_upload('app/assets/images/star.png')
+    
     sleep 0.3
   end
 
@@ -55,6 +55,11 @@ RSpec.describe OrderHistoryAddress, type: :model do
     end
     it 'phone_numberを入力しなければ登録できない' do
       @order_history_address.phone_number = ''
+      @order_history_address.valid?
+      expect(@order_history_address.errors.full_messages).to include{"phone_number can't be blank"}
+    end
+    it 'phone_numberに半角数字以外が含まれている場合は登録出来ない' do
+      @order_history_address.phone_number = '11111１'
       @order_history_address.valid?
       expect(@order_history_address.errors.full_messages).to include{"phone_number can't be blank"}
     end

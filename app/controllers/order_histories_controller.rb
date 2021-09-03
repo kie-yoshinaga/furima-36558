@@ -4,7 +4,7 @@ class OrderHistoriesController < ApplicationController
   def index
     @order_history_address = OrderHistoryAddress.new
     @item = Item.find(params[:item_id])
-    if current_user == @item.user && item.order_history.present?
+    if current_user == @item.user && @item.order_history.present?
         redirect_to root_path
     end
 
