@@ -32,7 +32,7 @@ class OrderHistoriesController < ApplicationController
 
   private
   def order_history_address_params
-    params.require(:order_history_address).permit(:image,:title,:price,:postal_code,:prefecture_id,:city,:house_number,:building_name,:phone_number).merge(user_id: current_user.id, item_id: @item.id ,token: params[:token])
+    params.require(:order_history_address).permit(:postal_code,:prefecture_id,:city,:house_number,:building_name,:phone_number).merge(user_id: current_user.id, item_id: @item.id ,token: params[:token])
   end
 
   def pay_item
