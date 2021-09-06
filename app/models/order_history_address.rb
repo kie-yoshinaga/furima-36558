@@ -23,4 +23,5 @@ class OrderHistoryAddress
       # order_history_idには、変数order_historyのidと指定する
       Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, house_number: house_number, building_name: building_name, phone_number: phone_number, order_history_id: order_history.id)
     end
+    
 end
