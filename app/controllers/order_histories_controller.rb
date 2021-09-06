@@ -1,7 +1,7 @@
 class OrderHistoriesController < ApplicationController
   before_action :authenticate_user!
   #before_action :move_to_index, expect: [:index,:new, :create]
-  before_action :set_message, only: [:creste, :index ]
+  before_action :set_message, only: [:create, :index ]
 
   def index
     @order_history_address = OrderHistoryAddress.new
@@ -32,7 +32,7 @@ class OrderHistoriesController < ApplicationController
 
   private
   def order_history_address_params
-    params.require(:order_history_address).permit(:image,:title,:price,:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+    params.require(:order_history_address).permit(:image,:title,:price,:postal_code,:prefecture_id,:city,:house_number,:building_name,:phone_number).merge(user_id: current_user.id, item_id: @item.id ,token: params[:token])
   end
 
   def pay_item
@@ -47,4 +47,5 @@ class OrderHistoriesController < ApplicationController
   def set_message
     @item = Item.find(params[:item_id])
   end
+
 end
