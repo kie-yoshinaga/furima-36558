@@ -5,9 +5,9 @@ class OrderHistoriesController < ApplicationController
 
   def index
     @order_history_address = OrderHistoryAddress.new
-    
-    unless current_user == @item.user && @item.order_history.present?
-        redirect_to root_path
+
+    if current_user == @item.user || @item.order_history.present?
+      redirect_to root_path
     end
 
   end
@@ -48,7 +48,7 @@ class OrderHistoriesController < ApplicationController
 
   def move_to_index
     unless user_signed_in?
-      redirect_to user_session_path
+      redirect_to root_path
     end
   end
 end
