@@ -7,7 +7,7 @@ class OrderHistoryAddress
       validates :user_id
       validates :item_id
       validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-      validates :phone_number, format: {with: /\A[a-z0-9]+\z/i, message: "is invalid. Input only number"}
+      validates :phone_number, format: {with: /\A\d{11,12}\z/, message: "is invalid. Input only number"}
       validates :city
       validates :house_number
       validates :token

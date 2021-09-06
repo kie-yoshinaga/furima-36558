@@ -6,10 +6,10 @@ class OrderHistoriesController < ApplicationController
   def index
     @order_history_address = OrderHistoryAddress.new
     
-    if current_user == @item.user && @item.order_history.present?
+    if current_user == @item.user
         redirect_to root_path
     end
-
+# && @item.order_history.present?
   end
 
   def new
@@ -17,8 +17,6 @@ class OrderHistoriesController < ApplicationController
   end
 
   def create
-
-    
     @order_history_address = OrderHistoryAddress.new(order_history_address_params)
     if @order_history_address.valid?
       pay_item
