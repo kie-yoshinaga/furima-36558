@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        last_name: 名字
+        first_name: 名前
+        birthday: 生年月日
+        last_name_reading: 名字の読み
+        first_name_reading: 名前の読み
+      item:
+        catch_copy: 詳細
+        image: 画像
+        title: タイトル
+        category_id: カテゴリー
+        condition_id: 商品の状態
+        postage_id: 配送料の負担
+        prefecture_id: 都道府県
+        shipping_date_id: 発送までの日数
+        price: 金額が
+      order_history_address:
+        postal_code: 郵便番号
+        phone_number: 電話番号
+        city: 市区町村
+        house_number: 番地
+        token: クレジット情報
+        prefecture_id: 都道府県

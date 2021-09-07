@@ -17,10 +17,13 @@ class User < ApplicationRecord
     validates :last_name, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "Full-width characters"}
     validates :first_name, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "Full-width characters"}
 
-    validates :last_name_reading, format: {with: /\A[ァ-ヶー]+\z/, message: "can't be blank"}
-    validates :first_name_reading, format: {with: /\A[ァ-ヶー]+\z/, message: "can't be blank"}
+    validates :last_name_reading, format: {with: /\A[ァ-ヶー]+\z/, message: "が空欄です"}
+    validates :first_name_reading, format: {with: /\A[ァ-ヶー]+\z/, message: "が空欄です"}
   
     validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "Include both letters and numbers"}
   
   end
+
+  has_many :comments, dependent: :destroy
+
 end
